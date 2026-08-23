@@ -30,6 +30,7 @@ func FilterTransformRuleSets(ruleSets []TransformRuleSet, f TransformRuleSetFilt
 		if f.ProcessingPurposeID != "" && item.ProcessingPurposeID != f.ProcessingPurposeID {
 			continue
 		}
+		item.Rules = CloneRules(item.Rules)
 		out = append(out, item)
 	}
 	sort.SliceStable(out, func(i, j int) bool {

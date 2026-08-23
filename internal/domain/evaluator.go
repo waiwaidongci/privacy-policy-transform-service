@@ -25,6 +25,7 @@ func Evaluate(ruleSet TransformRuleSet, revision *TransformRevision, ctx Evaluat
 	if ctx.Now.IsZero() {
 		ctx.Now = time.Now()
 	}
+	rules = append([]Rule(nil), rules...)
 	sort.SliceStable(rules, func(i, j int) bool { return rules[i].Priority < rules[j].Priority })
 	for _, rule := range rules {
 		if !matchesTags(rule.Tags, ctx.Tags) || !matchesTime(rule, ctx.Now) || !matchesPercentage(rule.Percentage, ctx.SubjectID) {

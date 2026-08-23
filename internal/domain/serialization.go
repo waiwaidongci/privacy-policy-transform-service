@@ -31,6 +31,13 @@ func CloneRules(in []Rule) []Rule {
 	return out
 }
 func CloneRule(r Rule) Rule {
+	if r.Tags != nil {
+		tags := make(map[string]string, len(r.Tags))
+		for k, v := range r.Tags {
+			tags[k] = v
+		}
+		r.Tags = tags
+	}
 	return r
 }
 func CopyTransformRuleSet(in TransformRuleSet) TransformRuleSet {
